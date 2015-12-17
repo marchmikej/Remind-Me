@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import SafariServices
 
 class ViewController: UIViewController {
-
+    
+    private var urlString:String = "http://rootedindezign.com"
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,7 +21,19 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        print("about to brint badge # ")
+        print(UIApplication.sharedApplication().applicationIconBadgeNumber)
+        openWithSafariVC("hi")
+    }
+    
+    @IBAction func openWithSafariVC(sender: AnyObject)
+    {
+        let svc = SFSafariViewController(URL: NSURL(string: self.urlString)!)
+        self.presentViewController(svc, animated: true, completion: nil)
+    }
 
 }
 
