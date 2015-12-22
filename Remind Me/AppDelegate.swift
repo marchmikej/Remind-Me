@@ -31,7 +31,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         
-        print(deviceToken)
+        let deviceTokenString = NSString(format: "%@", deviceToken) as String
+        
+        print(deviceTokenString)
+        print("----------")
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(deviceTokenString, forKey: "token")
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

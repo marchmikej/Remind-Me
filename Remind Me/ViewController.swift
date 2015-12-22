@@ -24,8 +24,18 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        print("about to brint badge # ")
-        print(UIApplication.sharedApplication().applicationIconBadgeNumber)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let token = defaults.objectForKey("token") as? String ?? String()
+        if token.isEmpty {
+            print("Device Token not available")
+            print(token)
+        } else {
+            print(token)
+        }
+        var count: Int = defaults.integerForKey("count")
+        count++
+        defaults.setInteger(count, forKey: "count")
+        print(defaults.integerForKey("count"))
         openWithSafariVC("hi")
     }
     
